@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <assert.h>
 
 #include "DoubleLinkedList.h"
@@ -25,15 +24,13 @@ int main()
     assert(c == list->tail);
     assert(3u == list->length);
 
-    clearList(list);
+    float value_c = rightPop(list);
+    float value_b = rightPop(list);
+    float value_a = rightPop(list);
 
-    assert(NULL != a); // attention: a does not hold valid values!
-    assert(NULL != b); // attention: b does not hold valid values!
-    assert(NULL != c); // attention: c does not hold valid values!
-
-    a = NULL;
-    b = NULL;
-    c = NULL;
+    assert(1.0f == value_a);
+    assert(2.0f == value_b);
+    assert(3.0f == value_c);
 
     assert(NULL == list->head);
     assert(NULL == list->tail);
@@ -48,16 +45,11 @@ int main()
 
     printList(list);
 
-    node_t *popped_d = leftPop(list);
+    (void)leftPop(list);
 
-    assert(NULL != popped_d);
-    assert(NULL != popped_d->value);
     assert(NULL == list->head);
     assert(NULL == list->tail);
     assert(0u == list->length);
-
-    popped_d = freeNode(popped_d);
-    assert(NULL == popped_d);
 
     return 0;
 }

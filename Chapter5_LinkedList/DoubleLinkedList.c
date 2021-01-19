@@ -7,17 +7,20 @@
 /*    FUNCTIONS      */
 /*********************/
 
-node_t *createNode(float value)
+node_t *createNode(value_type_t value)
 {
     node_t *node = (node_t *)malloc(sizeof(node_t));
+
     if (NULL == node)
     {
         return NULL;
     }
 
-    float *p_value = (float *)malloc(sizeof(float));
-    if (!p_value)
+    value_type_t *p_value = (value_type_t *)malloc(sizeof(value_type_t));
+
+    if (NULL == p_value)
     {
+        free(node);
         return NULL;
     }
 
@@ -43,11 +46,11 @@ node_t *freeNode(node_t *node)
     return NULL;
 }
 
-list_t *createList()
+list_t *createList(void)
 {
     list_t *list = (list_t *)malloc(sizeof(list_t));
 
-    if(list == NULL)
+    if(NULL == list)
     {
         return NULL;
     }
@@ -59,35 +62,9 @@ list_t *createList()
     return list;
 }
 
-void clearList(list_t *list)
-{
-    if (list == NULL)
-    {
-        return;
-    }
-
-    uint32_t length = list->length;
-    node_t *next;
-    node_t *current = list->head;
-
-    while(length > 0u)
-    {
-        next = current->next;
-
-        current = freeNode(current);
-
-        current = next;
-        length--;
-    }
-
-    list->length = 0u;
-    list->head = NULL;
-    list->tail = NULL;
-}
-
 void rightPush(list_t *list, node_t *node)
 {
-    if (NULL == node || list == NULL)
+    if (NULL == node || NULL == list)
     {
         return;
     }
@@ -110,9 +87,10 @@ void rightPush(list_t *list, node_t *node)
     list->length++;
 }
 
-node_t *rightPop(list_t *list)
+value_type_t rightPop(list_t *list)
 {
     node_t *node = list->tail;
+    value_type_t value = *(node->value);
 
     if(list->length > 1u)
     {
@@ -127,13 +105,15 @@ node_t *rightPop(list_t *list)
 
     list->length--;
 
-    return node;
+    node = freeNode(node);
+
+    return value;
 }
 
 
 void leftPush(list_t *list, node_t *node)
 {
-    if (NULL == node || list == NULL)
+    if (NULL == node || NULL == list)
     {
         return;
     }
@@ -156,9 +136,10 @@ void leftPush(list_t *list, node_t *node)
     list->length++;
 }
 
-node_t *leftPop(list_t *list)
+value_type_t leftPop(list_t *list)
 {
-    node_t *node = list->head;
+    node_t *node = list->tail;
+    value_type_t value = *(node->value);
 
     if(list->length > 1u)
     {
@@ -173,19 +154,21 @@ node_t *leftPop(list_t *list)
 
     list->length--;
 
-    return node;
+    node = freeNode(node);
+
+    return value;
 }
 
-node_t *findValue(list_t *list, float value)
+node_t *findValue(list_t *list, value_type_t value)
 {
-    if (list == NULL)
+    if (NULL == list)
     {
         return NULL;
     }
 
     node_t *node = list->head;
 
-    while(node != NULL)
+    while(NULL != node)
     {
         if(*node->value == value)
         {
@@ -198,11 +181,11 @@ node_t *findValue(list_t *list, float value)
     return NULL;
 }
 
-node_t *valueAtIndex(list_t *list, uint32_t index)
+value_type_t valueAtIndex(list_t *list, uint32_t index)
 {
-    if(list == NULL || index >= list->length)
+    if(NULL == list || index >= list->length)
     {
-        return NULL;
+        return NO_VALUE;
     }
 
     uint32_t current_index = 0u;
@@ -212,24 +195,24 @@ node_t *valueAtIndex(list_t *list, uint32_t index)
     {
         if (current_index == index)
         {
-            return node;
+            return *(node->value);
         }
 
         node = node->next;
         current_index++;
     }
 
-    return NULL;
+    return NO_VALUE;
 }
 
 void printList(list_t *list)
 {
-    if (list == NULL)
+    if (NULL == list)
     {
         return;
     }
 
-    uint32_t index = 0;
+    uint32_t index = 0u;
     node_t *current = list->head;
 
     printf("\nList contains %d elements.\n", list->length);
