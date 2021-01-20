@@ -19,6 +19,18 @@ node_t *createNode(value_type_t value)
     return node;
 }
 
+node_t *freeNode(node_t *node)
+{
+    if (NULL == node)
+    {
+        return NULL;
+    }
+
+    free(node);
+
+    return NULL;
+}
+
 void insertNode(node_t *root, node_t *node)
 {
     if(NULL == root || NULL == node)
@@ -94,14 +106,12 @@ node_t *removeNode(node_t *root, value_type_t value)
         if (NULL == root->left)
         {
             node_t *temp = root->right;
-            free(root);
 
             return temp;
         }
         else if (NULL == root->right)
         {
             node_t *temp = root->left;
-            free(root);
 
             return temp;
         }

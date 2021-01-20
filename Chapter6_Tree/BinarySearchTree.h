@@ -29,6 +29,8 @@ typedef struct node
 
 node_t *createNode(value_type_t value);
 
+node_t *freeNode(node_t *node);
+
 void insertNode(node_t *root, node_t *node);
 
 node_t *minValueNode(node_t *node);

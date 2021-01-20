@@ -33,18 +33,24 @@ typedef struct list
 /*    FUNCTIONS      */
 /*********************/
 
-list_t *createList(void);
-
 node_t *createNode(float value);
+
 node_t *freeNode(node_t *node);
 
+list_t *createList(void);
+
+list_t *freeList(list_t *list);
+
 void rightPush(list_t *list, node_t *node);
+
 value_type_t rightPop(list_t *list);
 
 void leftPush(list_t *list, node_t *node);
+
 value_type_t leftPop(list_t *list);
 
 node_t *findValue(list_t *list, float value);
+
 value_type_t valueAtIndex(list_t *list, uint32_t index);
 
 void printList(list_t *list);

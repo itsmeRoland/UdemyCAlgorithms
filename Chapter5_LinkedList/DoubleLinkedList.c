@@ -62,6 +62,18 @@ list_t *createList(void)
     return list;
 }
 
+list_t *freeList(list_t *list)
+{
+    if (NULL == list)
+    {
+        return NULL;
+    }
+
+    free(list);
+
+    return NULL;
+}
+
 void rightPush(list_t *list, node_t *node)
 {
     if (NULL == node || NULL == list)

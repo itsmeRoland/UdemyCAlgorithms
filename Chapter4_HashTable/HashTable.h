@@ -17,6 +17,7 @@ typedef float value_type_t;
 #define NO_VALUE (value_type_t)INFINITY
 
 #define MAX_NAME_SIZE (uint32_t)256u
+#define DELETED_KEY "DELETED"
 
 typedef struct item
 {

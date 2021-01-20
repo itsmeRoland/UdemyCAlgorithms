@@ -45,6 +45,16 @@ uint32_t hash(const char key[MAX_NAME_SIZE])
     return hash_value;
 }
 
+uint32_t hash_collision(hash_table_t* hash_table, uint32_t hash_value)
+{
+    while (NO_VALUE != hash_table->table[hash_value].value)
+    {
+        hash_value = (hash_value + 1u) % TABLE_SIZE;
+    }
+
+    return hash_value;
+}
+
 bool insertItem(hash_table_t* hash_table, item_t item)
 {
     uint32_t hash_value = hash(item.key);
@@ -57,9 +67,9 @@ bool insertItem(hash_table_t* hash_table, item_t item)
         }
     }
 
-    while (NO_VALUE != hash_table->table[hash_value].value)
+    if (NO_VALUE != hash_table->table[hash_value].value)
     {
-        hash_value = (hash_value + 1u) % TABLE_SIZE;
+        hash_value = hash_collision(hash_table, hash_value);
     }
 
     hash_table->table[hash_value] = item;
@@ -81,7 +91,7 @@ value_type_t removeItem(hash_table_t *hash_table, char key[MAX_NAME_SIZE])
     value_type_t value = hash_table->table[hash_value].value;
 
     hash_table->table[hash_value].value = NO_VALUE;
-    strcpy(hash_table->table[hash_value].key, "DELETED");
+    strcpy(hash_table->table[hash_value].key, DELETED_KEY);
 
     return value;
 }

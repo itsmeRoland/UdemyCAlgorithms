@@ -26,4 +26,13 @@ int main()
 
     printf("Start print!\n");
     printTree(root);
+
+    node4 = freeNode(node4);
+    node3 = freeNode(node3);
+    node2 = freeNode(node2);
+    root = freeNode(root);
+    assert(NULL == root);
+    assert(NULL == node2);
+    assert(NULL == node3);
+    assert(NULL == node4);
 }

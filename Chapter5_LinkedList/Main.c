@@ -51,5 +51,8 @@ int main()
     assert(NULL == list->tail);
     assert(0u == list->length);
 
+    list = freeList(list);
+    assert(NULL == list);
+
     return 0;
 }

@@ -50,11 +50,11 @@ int main()
     assert(42.0f == value_peter);
     assert(31.0f == value_lara);
 
-    assert(0 == strncmp("DELETED", hash_table->table[0].key, MAX_NAME_SIZE));
-    assert(0 == strncmp("DELETED", hash_table->table[1].key, MAX_NAME_SIZE));
-    assert(0 == strncmp("DELETED", hash_table->table[2].key, MAX_NAME_SIZE));
-    assert(0 == strncmp("DELETED", hash_table->table[3].key, MAX_NAME_SIZE));
-    assert(0 == strncmp("DELETED", hash_table->table[4].key, MAX_NAME_SIZE));
+    assert(0 == strncmp(DELETED_KEY, hash_table->table[0].key, MAX_NAME_SIZE));
+    assert(0 == strncmp(DELETED_KEY, hash_table->table[1].key, MAX_NAME_SIZE));
+    assert(0 == strncmp(DELETED_KEY, hash_table->table[2].key, MAX_NAME_SIZE));
+    assert(0 == strncmp(DELETED_KEY, hash_table->table[3].key, MAX_NAME_SIZE));
+    assert(0 == strncmp(DELETED_KEY, hash_table->table[4].key, MAX_NAME_SIZE));
 
     assert(NO_VALUE == hash_table->table[0].value);
     assert(NO_VALUE == hash_table->table[1].value);
@@ -63,4 +63,7 @@ int main()
     assert(NO_VALUE == hash_table->table[4].value);
 
     printHashTable(hash_table);
+
+    hash_table = freeHashTable(hash_table);
+    assert(NULL == hash_table);
 }
