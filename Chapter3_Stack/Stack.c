@@ -12,12 +12,13 @@ stack_t *createStack(uint32_t capacity)
         return NULL;
     }
 
-    const size_t data_size = capacity * sizeof(value_type_t);
+    size_t data_size = capacity * sizeof(value_type_t);
     value_type_t *data = (value_type_t *)malloc(data_size);
 
     if (NULL == data)
     {
         free(stack);
+
         return NULL;
     }
 
@@ -94,13 +95,13 @@ void printStack(stack_t *stack)
     }
 
     printf(
-        "\nStack contains %u elements with a capacity of %u.\n",
+        "\nStack contains %u elements with a capcity of %u.\n",
         stack->size,
         stack->capacity
     );
 
-    for (uint32_t i = 0u; i < stack->size; i++)
+    for (int32_t i = stack->size - 1; i >= 0; i--)
     {
-        printf("Index: %d, Value: %f\n", i, stack->data[i]);
+        printf("Index: %d, Value %f\n", i, stack->data[i]);
     }
 }

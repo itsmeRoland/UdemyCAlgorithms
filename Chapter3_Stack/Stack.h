@@ -1,17 +1,17 @@
 #ifndef STACK_H
 #define STACK_H
 
-/*********************/
-/*      INCLUDES     */
-/*********************/
+/*******************/
+/*     INCLUDES    */
+/*******************/
 
 #include <math.h>
 #include <stdint.h>
 #include <stdbool.h>
 
-/*********************/
-/* DEFINES AND TYPES */
-/*********************/
+/**********************/
+/* DEFINES AND TYPES  */
+/**********************/
 
 typedef float value_type_t;
 #define NO_VALUE (value_type_t)INFINITY
@@ -23,9 +23,9 @@ typedef struct stack
     value_type_t *data;
 } stack_t;
 
-/*********************/
-/*    FUNCTIONS      */
-/*********************/
+/**********************/
+/*     FUNCTIONS      */
+/**********************/
 
 stack_t *createStack(uint32_t capacity);
 
