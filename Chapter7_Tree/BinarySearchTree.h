@@ -17,7 +17,7 @@ typedef float value_type_t;
 #define NO_VALUE (value_type_t)INFINITY
 
 typedef struct node
-{ 
+{
   value_type_t value;
   struct node *left;
   struct node *right;

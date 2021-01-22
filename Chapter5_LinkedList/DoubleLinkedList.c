@@ -50,14 +50,14 @@ list_t *createList(void)
 {
     list_t *list = (list_t *)malloc(sizeof(list_t));
 
-    if(NULL == list)
+    if (NULL == list)
     {
         return NULL;
     }
 
-    list->head = NULL;
-    list->tail = NULL;
-    list->length = 0u;
+    list->front = NULL;
+    list->back = NULL;
+    list->size = 0u;
 
     return list;
 }
@@ -74,48 +74,48 @@ list_t *freeList(list_t *list)
     return NULL;
 }
 
-void rightPush(list_t *list, node_t *node)
+void pushBack(list_t *list, node_t *node)
 {
     if (NULL == node || NULL == list)
     {
         return;
     }
 
-    if(list->length > 0u)
+    if (list->size > 0u)
     {
         node->next = NULL;
-        node->prev = list->tail;
-        list->tail->next = node;
-        list->tail = node;
+        node->prev = list->back;
+        list->back->next = node;
+        list->back = node;
     }
     else
     {
         node->next = NULL;
         node->prev = NULL;
-        list->head = node;
-        list->tail = node;
+        list->front = node;
+        list->back = node;
     }
 
-    list->length++;
+    list->size++;
 }
 
-value_type_t rightPop(list_t *list)
+value_type_t popBack(list_t *list)
 {
-    node_t *node = list->tail;
+    node_t *node = list->back;
     value_type_t value = *(node->value);
 
-    if(list->length > 1u)
+    if (list->size > 1u)
     {
-        list->tail = node->prev;
-        list->tail->next = NULL;
+        list->back = node->prev;
+        list->back->next = NULL;
     }
     else
     {
-        list->tail = NULL;
-        list->head = NULL;
+        list->back = NULL;
+        list->front = NULL;
     }
 
-    list->length--;
+    list->size--;
 
     node = freeNode(node);
 
@@ -123,52 +123,84 @@ value_type_t rightPop(list_t *list)
 }
 
 
-void leftPush(list_t *list, node_t *node)
+void frontPush(list_t *list, node_t *node)
 {
     if (NULL == node || NULL == list)
     {
         return;
     }
 
-    if(list->length > 0u)
+    if (list->size > 0u)
     {
         node->prev = NULL;
-        node->next = list->head;
-        list->head->prev = node;
-        list->head = node;
+        node->next = list->front;
+        list->front->prev = node;
+        list->front = node;
     }
     else
     {
-        list->head = node;
-        list->tail = node;
+        list->front = node;
+        list->back = node;
         node->prev = NULL;
         node->next = NULL;
     }
 
-    list->length++;
+    list->size++;
 }
 
-value_type_t leftPop(list_t *list)
+value_type_t frontPop(list_t *list)
 {
-    node_t *node = list->tail;
+    node_t *node = list->back;
     value_type_t value = *(node->value);
 
-    if(list->length > 1u)
+    if (list->size > 1u)
     {
-        list->head = node->next;
-        list->head->prev = NULL;
+        list->front = node->next;
+        list->front->prev = NULL;
     }
     else
     {
-        list->tail = NULL;
-        list->head = NULL;
+        list->back = NULL;
+        list->front = NULL;
     }
 
-    list->length--;
+    list->size--;
 
     node = freeNode(node);
 
     return value;
+}
+
+void removeNode(list_t *list, node_t *node)
+{
+    if (NULL == list || NULL == node)
+    {
+        return;
+    }
+
+    if(NULL != node->prev)
+    {
+        node->prev->next = node->next;
+    }
+    else
+    {
+        list->front = node->next;
+        list->front->prev = NULL;
+    }
+
+    if (NULL != node->next)
+    {
+        node->next->prev = node->prev;
+    }
+    else
+    {
+        list->back = node->prev;
+        list->back->next = NULL;
+    }
+
+    freeNode(node);
+
+    list->size--;
 }
 
 node_t *findValue(list_t *list, value_type_t value)
@@ -178,11 +210,11 @@ node_t *findValue(list_t *list, value_type_t value)
         return NULL;
     }
 
-    node_t *node = list->head;
+    node_t *node = list->front;
 
-    while(NULL != node)
+    while (NULL != node)
     {
-        if(*node->value == value)
+        if (*node->value == value)
         {
             return node;
         }
@@ -195,15 +227,15 @@ node_t *findValue(list_t *list, value_type_t value)
 
 value_type_t valueAtIndex(list_t *list, uint32_t index)
 {
-    if(NULL == list || index >= list->length)
+    if (NULL == list || index >= list->size)
     {
         return NO_VALUE;
     }
 
     uint32_t current_index = 0u;
-    node_t *node = list->head;
+    node_t *node = list->front;
 
-    while(current_index < list->length)
+    while (current_index < list->size)
     {
         if (current_index == index)
         {
@@ -225,11 +257,11 @@ void printList(list_t *list)
     }
 
     uint32_t index = 0u;
-    node_t *current = list->head;
+    node_t *current = list->front;
 
-    printf("\nList contains %d elements.\n", list->length);
+    printf("\nList contains %d elements.\n", list->size);
 
-    while(NULL != current)
+    while (NULL != current)
     {
         printf("Index: %d, Value: %f", index, *current->value);
         current = current->next;

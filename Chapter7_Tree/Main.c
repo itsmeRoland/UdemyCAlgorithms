@@ -3,7 +3,7 @@
 
 #include "BinarySearchTree.h"
 
-int main()
+int main(void)
 {
     node_t *root = createNode(42.0f);
     node_t *node2 = createNode(22.0f);

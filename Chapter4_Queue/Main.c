@@ -3,15 +3,15 @@
 
 #include "Queue.h"
 
-int main()
+int main(void)
 {
     uint32_t capacity = 4;
     queue_t *queue = createQueue(capacity);
 
-    enqueue(queue, 0.0f);
-    enqueue(queue, 1.0f);
-    enqueue(queue, 2.0f);
-    enqueue(queue, 3.0f);
+    push(queue, 0.0f);
+    push(queue, 1.0f);
+    push(queue, 2.0f);
+    push(queue, 3.0f);
 
     printQueue(queue);
 
@@ -20,25 +20,25 @@ int main()
     assert(2.0f == queue->data[queue->front_idx + 2u]);
     assert(3.0f == queue->data[queue->front_idx + 3u]);
     assert(4u == queue->capacity);
-    assert(4u == queue->length);
+    assert(4u == queue->size);
 
-    value_type_t value_dequeue1 = dequeue(queue);
-    value_type_t value_dequeue2 = dequeue(queue);
+    value_type_t value_pop1 = pop(queue);
+    value_type_t value_pop2 = pop(queue);
 
     assert(2.0f == queue->data[queue->front_idx]);
     assert(3.0f == queue->data[queue->front_idx + 1u]);
-    assert(0.0f == value_dequeue1);
-    assert(1.0f == value_dequeue2);
+    assert(0.0f == value_pop1);
+    assert(1.0f == value_pop2);
     assert(4u == queue->capacity);
-    assert(2u == queue->length);
+    assert(2u == queue->size);
 
-    value_type_t value_dequeue3 = dequeue(queue);
-    value_type_t value_dequeue4 = dequeue(queue);
+    value_type_t value_pop3 = pop(queue);
+    value_type_t value_pop4 = pop(queue);
 
-    assert(2.0f == value_dequeue3);
-    assert(3.0f == value_dequeue4);
+    assert(2.0f == value_pop3);
+    assert(3.0f == value_pop4);
     assert(4u == queue->capacity);
-    assert(0u == queue->length);
+    assert(0u == queue->size);
 
     printQueue(queue);
 

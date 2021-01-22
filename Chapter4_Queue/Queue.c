@@ -21,9 +21,9 @@ queue_t *createQueue(uint32_t capacity)
         return NULL;
     }
 
-    queue->length = 0u;
+    queue->size = 0u;
     queue->front_idx = 0u;
-    queue->rear_idx = capacity - 1u;
+    queue->back_idx = capacity - 1u;
     queue->capacity = capacity;
     queue->data = data;
 
@@ -47,27 +47,27 @@ queue_t *freeQueue(queue_t *queue)
 
 bool isFull(queue_t *queue)
 {
-    return (queue->length == queue->capacity);
+    return (queue->size == queue->capacity);
 }
 
 bool isEmpty(queue_t *queue)
 {
-    return (0u == queue->length);
+    return (0u == queue->size);
 }
 
-void enqueue(queue_t *queue, value_type_t value)
+void push(queue_t *queue, value_type_t value)
 {
     if (true == isFull(queue))
     {
         return;
     }
 
-    queue->rear_idx = (queue->rear_idx + 1u) % queue->capacity;
-    queue->data[queue->rear_idx] = value;
-    queue->length++;
+    queue->back_idx = (queue->back_idx + 1u) % queue->capacity;
+    queue->data[queue->back_idx] = value;
+    queue->size++;
 }
 
-value_type_t dequeue(queue_t *queue)
+value_type_t pop(queue_t *queue)
 {
     if (true == isEmpty(queue))
     {
@@ -76,7 +76,7 @@ value_type_t dequeue(queue_t *queue)
 
     value_type_t value = queue->data[queue->front_idx];
     queue->front_idx = (queue->front_idx + 1u) % queue->capacity;
-    queue->length--;
+    queue->size--;
 
     return value;
 }
@@ -91,14 +91,14 @@ value_type_t front(queue_t *queue)
     return queue->data[queue->front_idx];
 }
 
-value_type_t rear(queue_t *queue)
+value_type_t back(queue_t *queue)
 {
     if (true == isEmpty(queue))
     {
         return NO_VALUE;
     }
 
-    return queue->data[queue->rear_idx];
+    return queue->data[queue->back_idx];
 }
 
 void printQueue(queue_t *queue)
@@ -110,11 +110,11 @@ void printQueue(queue_t *queue)
 
     printf(
         "\nQueue contains %u elements with a capacity of %u.\n",
-        queue->length,
+        queue->size,
         queue->capacity
     );
 
-    for (uint32_t i = 0u; i < queue->length; i++)
+    for (uint32_t i = 0u; i < queue->size; i++)
     {
         printf("Index: %d, Value: %f\n", i, queue->data[i]);
     }

@@ -31,7 +31,7 @@ typedef struct edge
 } edge_t;
 
 typedef struct graph
-{ 
+{
     uint32_t num_verticies;
     uint32_t num_edges;
     node_t **verticies;
@@ -39,11 +39,11 @@ typedef struct graph
 
 graph_t *createGraph();
 
-graph_t *freeGraph(graph_t* graph);
+graph_t *freeGraph(graph_t *graph);
 
 node_t *createNode(uint32_t node_idx, value_type_t weight, node_t *head);
 
-node_t *freeNode(node_t* node);
+node_t *freeNode(node_t *node);
 
 void addEdges(graph_t *graph, edge_t edges[]);
 

@@ -3,7 +3,7 @@
 
 #include "Heap.h"
 
-int main()
+int main(void)
 {
     heap_t *heap = createHeap();
 
@@ -13,7 +13,7 @@ int main()
     insertValue(heap, 72.0f);
     insertValue(heap, -20.0f);
 
-    assert(5u == heap->length);
+    assert(5u == heap->size);
     assert(10u == heap->capacity);
     assert(-20.0f == heap->data[0]);
     assert(22.0f == heap->data[1]);

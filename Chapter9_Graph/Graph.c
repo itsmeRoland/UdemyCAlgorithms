@@ -34,7 +34,7 @@ graph_t *createGraph(uint32_t num_verticies, uint32_t num_edges)
     return graph;
 }
 
-graph_t *freeGraph(graph_t* graph)
+graph_t *freeGraph(graph_t *graph)
 {
     if (NULL == graph)
     {
@@ -67,7 +67,7 @@ node_t *createNode(uint32_t node_idx, value_type_t weight, node_t *head)
     return node;
 }
 
-node_t *freeNode(node_t* node)
+node_t *freeNode(node_t *node)
 {
     if (NULL == node)
     {
@@ -86,7 +86,7 @@ void addEdges(graph_t *graph, edge_t edges[])
         int start_ver = edges[i].start_ver;
         int end_ver = edges[i].end_ver;
         value_type_t weight = edges[i].weight;
-        node_t* new_node = createNode(end_ver, weight, graph->verticies[start_ver]);
+        node_t *new_node = createNode(end_ver, weight, graph->verticies[start_ver]);
         graph->verticies[start_ver] = new_node;
     }
 }

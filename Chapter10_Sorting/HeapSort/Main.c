@@ -2,11 +2,11 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-void printArray(float arr[], uint32_t length)
+void printArray(float arr[], uint32_t size)
 {
-    for (uint32_t i = 0u; i < length; i++)
+    for (uint32_t i = 0u; i < size; i++)
     {
-        if (i < length - 1u)
+        if (i < size - 1u)
         {
             printf("%.2f, ", arr[i]);
         }
@@ -17,18 +17,18 @@ void printArray(float arr[], uint32_t length)
     }
 }
 
-void swapLargest(float arr[], int32_t length, int32_t i)
+void swapLargest(float arr[], int32_t size, int32_t i)
 {
     int32_t largest = i; // Initialize largest as root 
     int32_t left = 2 * i + 1;
     int32_t right = 2 * i + 2;
 
     // If left child is larger than root 
-    if (left < length && arr[left] > arr[largest])
+    if (left < size && arr[left] > arr[largest])
         largest = left;
 
     // If right child is larger than largest
-    if (right < length && arr[right] > arr[largest])
+    if (right < size && arr[right] > arr[largest])
         largest = right;
 
     // If largest is not root
@@ -39,18 +39,18 @@ void swapLargest(float arr[], int32_t length, int32_t i)
         arr[largest] = temp;
 
         // Recursively call the swapLargest 
-        swapLargest(arr, length, largest);
+        swapLargest(arr, size, largest);
     }
 }
 
-void heapSort(float arr[], int32_t length)
+void heapSort(float arr[], int32_t size)
 {
-    // Build heap from an unsorted array (rearrange array) 
-    for (int32_t i = length / 2 - 1; i >= 0; i--)
-        swapLargest(arr, length, i);
+    // Build heap from an unsorted array (backrange array) 
+    for (int32_t i = size / 2 - 1; i >= 0; i--)
+        swapLargest(arr, size, i);
 
     // One by one extract an element from heap 
-    for (int32_t i = length - 1; i >= 0; i--)
+    for (int32_t i = size - 1; i >= 0; i--)
     {
         // Move current root to end 
         float temp = arr[0];
@@ -62,7 +62,7 @@ void heapSort(float arr[], int32_t length)
     }
 }
 
-int main()
+int main(void)
 {
     float data[] = { -10, 20, -20, 40, 12 };
 

@@ -19,31 +19,31 @@ typedef float value_type_t;
 typedef struct queue
 {
     uint32_t front_idx;
-    uint32_t rear_idx;
-    uint32_t length;
+    uint32_t back_idx;
+    uint32_t size;
     uint32_t capacity;
-    value_type_t * data;
+    value_type_t *data;
 } queue_t;
 
 /*********************/
 /*    FUNCTIONS      */
 /*********************/
 
-queue_t *createQueue(uint32_t capacity);
+queue_t * createQueue(uint32_t capacity);
 
-queue_t *freeQueue(queue_t* queue);
+queue_t *freeQueue(queue_t *queue);
 
-bool isFull(queue_t* queue);
+bool isFull(queue_t *queue);
 
-bool isEmpty(queue_t* queue);
+bool isEmpty(queue_t *queue);
 
-void enqueue(queue_t* queue, value_type_t value);
+void push(queue_t *queue, value_type_t value);
 
-value_type_t dequeue(queue_t *queue);
+value_type_t pop(queue_t *queue);
 
 value_type_t front(queue_t *queue);
 
-value_type_t rear(queue_t *queue);
+value_type_t back(queue_t *queue);
 
 void printQueue(queue_t *queue);
 

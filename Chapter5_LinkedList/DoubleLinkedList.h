@@ -24,9 +24,9 @@ typedef struct node
 
 typedef struct list
 {
-    struct node *head;
-    struct node *tail;
-    uint32_t length;
+    struct node *front;
+    struct node *back;
+    uint32_t size;
 } list_t;
 
 /*********************/
@@ -41,13 +41,15 @@ list_t *createList(void);
 
 list_t *freeList(list_t *list);
 
-void rightPush(list_t *list, node_t *node);
+void pushBack(list_t *list, node_t *node);
 
-value_type_t rightPop(list_t *list);
+value_type_t popBack(list_t *list);
 
-void leftPush(list_t *list, node_t *node);
+void frontPush(list_t *list, node_t *node);
 
-value_type_t leftPop(list_t *list);
+value_type_t frontPop(list_t *list);
+
+void removeNode(list_t *list, node_t *node);
 
 node_t *findValue(list_t *list, float value);
 

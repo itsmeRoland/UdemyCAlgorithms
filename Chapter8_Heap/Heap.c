@@ -23,17 +23,17 @@ heap_t *createHeap()
     }
 
     heap->capacity = DEFAULT_CAPACITY;
-    heap->length = 0u;
+    heap->size = 0u;
     heap->data = data;
 
     return heap;
 }
 
-heap_t *freeHeap(heap_t* heap)
+heap_t *freeHeap(heap_t *heap)
 {
     if (NULL != heap)
     {
-        if(NULL != heap->data)
+        if (NULL != heap->data)
         {
             free(heap->data);
         }
@@ -64,13 +64,13 @@ uint32_t rightChildNode(uint32_t idx)
 
 void insertValue(heap_t *heap, value_type_t value)
 {
-    if (heap->length == heap->capacity)
+    if (heap->size == heap->capacity)
     {
         return;
     }
 
-    heap->length++;
-    uint32_t idx = heap->length - 1u;
+    heap->size++;
+    uint32_t idx = heap->size - 1u;
     heap->data[idx] = value;
 
     while (0u != idx && heap->data[parentNode(idx)] > heap->data[idx])
@@ -82,19 +82,19 @@ void insertValue(heap_t *heap, value_type_t value)
 
 value_type_t removeMinimum(heap_t *heap)
 {
-    if (heap->length <= 0u)
+    if (heap->size <= 0u)
     {
         return NO_VALUE;
     }
-    if (heap->length == 1u)
+    if (heap->size == 1u)
     {
-        heap->length--;
+        heap->size--;
         return heap->data[0];
     }
 
     uint32_t root = heap->data[0];
-    heap->data[0] = heap->data[heap->length - 1];
-    heap->length--;
+    heap->data[0] = heap->data[heap->size - 1];
+    heap->size--;
     heapify(heap, 0);
 
     return root;
@@ -106,11 +106,11 @@ void heapify(heap_t *heap, uint32_t idx)
     uint32_t right_idx = rightChildNode(idx);
     uint32_t smallest = idx;
 
-    if (left_idx < heap->length && heap->data[left_idx] < heap->data[idx])
+    if (left_idx < heap->size && heap->data[left_idx] < heap->data[idx])
     {
         smallest = left_idx;
     }
-    if (right_idx < heap->length && heap->data[right_idx] < heap->data[smallest])
+    if (right_idx < heap->size && heap->data[right_idx] < heap->data[smallest])
     {
         smallest = right_idx;
     }
@@ -131,7 +131,7 @@ void swap(value_type_t *a, value_type_t *b)
 void printHeap(heap_t *heap)
 {
     uint32_t num_visited_nodes = 0u;
-    uint32_t depth = (uint32_t)ceil(log2(heap->length));
+    uint32_t depth = (uint32_t)ceil(log2(heap->size));
 
     for (uint32_t i = 0; i < depth; i++)
     {
@@ -143,7 +143,7 @@ void printHeap(heap_t *heap)
         {
             uint32_t current_idx = num_visited_nodes + j;
 
-            if (current_idx < heap->length)
+            if (current_idx < heap->size)
             {
                 printf("Node: %d, Value: %f\n", j, heap->data[current_idx]);
             }

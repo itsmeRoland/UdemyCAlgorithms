@@ -2,11 +2,11 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-void printArray(float arr[], uint32_t length)
+void printArray(float arr[], uint32_t size)
 {
-    for (uint32_t i = 0u; i < length; i++)
+    for (uint32_t i = 0u; i < size; i++)
     {
-        if (i < length - 1u)
+        if (i < size - 1u)
         {
             printf("%.2f, ", arr[i]);
         }
@@ -24,7 +24,7 @@ int32_t partition(float arr[], int32_t low, int32_t high)
     int32_t i = (low - 1);
 
     for (int32_t j = low; j <= high - 1; j++)
-    { 
+    {
         if (arr[j] <= pivot)
         {
             i++;
@@ -52,7 +52,7 @@ void quickSort(float arr[], int32_t low, int32_t high)
     }
 }
 
-int main()
+int main(void)
 {
     float data[] = { -10, 20, -20, 40, 12 };
 

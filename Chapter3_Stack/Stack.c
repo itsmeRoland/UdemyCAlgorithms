@@ -7,7 +7,7 @@ stack_t *createStack(uint32_t capacity)
 {
     stack_t *stack = (stack_t *)malloc(sizeof(stack_t));
 
-    if(NULL == stack)
+    if (NULL == stack)
     {
         return NULL;
     }
@@ -15,24 +15,24 @@ stack_t *createStack(uint32_t capacity)
     const size_t data_size = capacity * sizeof(value_type_t);
     value_type_t *data = (value_type_t *)malloc(data_size);
 
-    if(NULL == data)
+    if (NULL == data)
     {
         free(stack);
         return NULL;
     }
 
-    stack->length = 0u;
+    stack->size = 0u;
     stack->capacity = capacity;
     stack->data = data;
 
     return stack;
 }
 
-stack_t *freeStack(stack_t* stack)
+stack_t *freeStack(stack_t *stack)
 {
     if (NULL != stack)
     {
-        if(NULL != stack->data)
+        if (NULL != stack->data)
         {
             free(stack->data);
         }
@@ -45,23 +45,23 @@ stack_t *freeStack(stack_t* stack)
 
 bool isFull(stack_t *stack)
 {
-    return (stack->length == stack->capacity);
+    return (stack->size == stack->capacity);
 }
 
 bool isEmpty(stack_t *stack)
 {
-    return (0u == stack->length);
+    return (0u == stack->size);
 }
 
-void push(stack_t* stack, value_type_t value)
+void push(stack_t *stack, value_type_t value)
 {
     if (true == isFull(stack))
     {
         return;
     }
 
-    stack->data[stack->length] = value;
-    stack->length++;
+    stack->data[stack->size] = value;
+    stack->size++;
 }
 
 value_type_t pop(stack_t *stack)
@@ -71,19 +71,19 @@ value_type_t pop(stack_t *stack)
         return NO_VALUE;
     }
 
-    stack->length--;
+    stack->size--;
 
-    return stack->data[stack->length];
+    return stack->data[stack->size];
 }
 
-value_type_t peek(stack_t *stack)
+value_type_t top(stack_t *stack)
 {
     if (true == isEmpty(stack))
     {
         return NO_VALUE;
     }
 
-    return stack->data[stack->length - 1u];
+    return stack->data[stack->size - 1u];
 }
 
 void printStack(stack_t *stack)
@@ -95,11 +95,11 @@ void printStack(stack_t *stack)
 
     printf(
         "\nStack contains %u elements with a capacity of %u.\n",
-        stack->length,
+        stack->size,
         stack->capacity
     );
 
-    for (uint32_t i = 0u; i < stack->length; i++)
+    for (uint32_t i = 0u; i < stack->size; i++)
     {
         printf("Index: %d, Value: %f\n", i, stack->data[i]);
     }

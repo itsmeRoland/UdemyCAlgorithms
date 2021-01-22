@@ -8,7 +8,7 @@ hash_table_t *createHashTable(void)
 {
     hash_table_t *hash_table = (hash_table_t *)malloc(sizeof(hash_table_t));
 
-    if(NULL == hash_table)
+    if (NULL == hash_table)
     {
         return NULL;
     }
@@ -21,7 +21,7 @@ hash_table_t *createHashTable(void)
     return hash_table;
 }
 
-hash_table_t *freeHashTable(hash_table_t* hash_table)
+hash_table_t *freeHashTable(hash_table_t *hash_table)
 {
     if (NULL != hash_table)
     {
@@ -45,36 +45,27 @@ uint32_t hash(const char key[MAX_NAME_SIZE])
     return hash_value;
 }
 
-uint32_t hash_collision(hash_table_t* hash_table, uint32_t hash_value)
+void insertItem(hash_table_t *hash_table, item_t *item)
 {
+    for (uint32_t i = 0; i < TABLE_SIZE; i++)
+    {
+        int key_compare = strncmp(hash_table->table[i].key, item->key, MAX_NAME_SIZE);
+        if (0 == key_compare)
+        {
+            hash_table->table[i].value = item->value;
+
+            return;
+        }
+    }
+
+    uint32_t hash_value = hash(item->key);
+
     while (NO_VALUE != hash_table->table[hash_value].value)
     {
         hash_value = (hash_value + 1u) % TABLE_SIZE;
     }
 
-    return hash_value;
-}
-
-bool insertItem(hash_table_t* hash_table, item_t item)
-{
-    uint32_t hash_value = hash(item.key);
-
-    for (uint32_t i = 0; i < TABLE_SIZE; i++)
-    {
-        if (0 == strncmp(hash_table->table[i].key, item.key, MAX_NAME_SIZE))
-        {
-            return false;
-        }
-    }
-
-    if (NO_VALUE != hash_table->table[hash_value].value)
-    {
-        hash_value = hash_collision(hash_table, hash_value);
-    }
-
-    hash_table->table[hash_value] = item;
-
-    return true;
+    hash_table->table[hash_value] = *item;
 }
 
 value_type_t removeItem(hash_table_t *hash_table, char key[MAX_NAME_SIZE])
@@ -94,6 +85,19 @@ value_type_t removeItem(hash_table_t *hash_table, char key[MAX_NAME_SIZE])
     strcpy(hash_table->table[hash_value].key, DELETED_KEY);
 
     return value;
+}
+
+value_type_t getValue(hash_table_t *hash_table, char key[MAX_NAME_SIZE])
+{
+    for (uint32_t i = 0; i < TABLE_SIZE; i++)
+    {
+        if (0 == strncmp(hash_table->table[i].key, key, MAX_NAME_SIZE))
+        {
+            return hash_table->table[i].value;
+        }
+    }
+
+    return NO_VALUE;
 }
 
 void printHashTable(hash_table_t *hash_table)

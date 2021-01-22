@@ -2,11 +2,11 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-void printArray(float arr[], uint32_t length)
+void printArray(float arr[], uint32_t size)
 {
-    for (uint32_t i = 0; i < length; i++)
+    for (uint32_t i = 0; i < size; i++)
     {
-        if (i < length - 1)
+        if (i < size - 1)
         {
             printf("%.2f, ", arr[i]);
         }
@@ -82,12 +82,12 @@ void divide(float arr[], uint32_t start, uint32_t end)
     }
 }
 
-void mergeSort(float arr[], uint32_t length)
+void mergeSort(float arr[], uint32_t size)
 {
-    divide(arr, 0u, length - 1u);
+    divide(arr, 0u, size - 1u);
 }
 
-int main()
+int main(void)
 {
     float data[] = { -10, 20, -20, 40, 12 };
 

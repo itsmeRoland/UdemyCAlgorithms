@@ -33,16 +33,16 @@ node_t *freeNode(node_t *node)
 
 void insertNode(node_t *root, node_t *node)
 {
-    if(NULL == root || NULL == node)
+    if (NULL == root || NULL == node)
     {
         return;
     }
 
     node_t *current_node = root;
 
-    while(true)
+    while (true)
     {
-        if(node->value < current_node->value)
+        if (node->value < current_node->value)
         {
             if (NULL == current_node->left)
             {
@@ -77,12 +77,12 @@ node_t *minValueNode(node_t *node)
     {
         return NULL;
     }
- 
+
     while (NULL != current->left)
     {
         current = current->left;
     }
- 
+
     return current;
 }
 
@@ -115,7 +115,7 @@ node_t *removeNode(node_t *root, value_type_t value)
 
             return temp;
         }
- 
+
         node_t *temp = minValueNode(root->right);
         root->value = temp->value;
         root->right = removeNode(root->right, temp->value);

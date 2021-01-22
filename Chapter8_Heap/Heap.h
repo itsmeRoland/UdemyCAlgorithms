@@ -19,15 +19,15 @@ typedef float value_type_t;
 #define DEFAULT_CAPACITY (uint32_t)10u
 
 typedef struct heap
-{ 
-  uint32_t length;
+{
+  uint32_t size;
   uint32_t capacity;
   value_type_t *data;
 } heap_t;
 
 heap_t *createHeap();
 
-heap_t *freeHeap(heap_t* heap);
+heap_t *freeHeap(heap_t *heap);
 
 uint32_t parentNode(uint32_t idx);
 
