@@ -20,5 +20,5 @@
         "cstdlib": "cpp",
         "string_view": "cpp"
     },
-    "python.pythonPath": "C:\\Users\\schaf\\Anaconda3\\envs\\tensorflow\\python.exe"
+    "python.pythonPath": "C:\\Users\\Jan\\anaconda3\\envs\\tensorflow\\python.exe"
 }

@@ -1,31 +1,13 @@
 #include <stdio.h>
+#include <stdint.h>
 
 int main(void)
 {
-    int numbers[4];
+    uint32_t numbers[4] = { 0, 1, 2, 3 };
 
-    for (int i = 0; i < 4; i++)
+    for (uint32_t i = 0; i < 4; i++)
     {
-        numbers[i] = 1337;
-    }
-
-    for (int i = 0; i < 4; i++)
-    {
-        printf("numbers[%d] = %d\n", i, numbers[i]);
-    }
-
-    int numbers2[4] = { 13, 12, 11, 10 };
-
-    for (int i = 0; i < 4; i++)
-    {
-        printf("numbers2[%d] = %d\n", i, numbers2[i]);
-    }
-
-    int numbers3[4] = { 13, 12, 11 };
-
-    for (int i = 0; i < 4; i++)
-    {
-        printf("numbers3[%d] = %d\n", i, numbers3[i]);
+        printf("%u, %p\n", numbers[i], (void *)&numbers[i]);
     }
 
     return 0;

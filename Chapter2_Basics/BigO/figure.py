@@ -36,4 +36,5 @@ plt.legend([
     "$n!$"
 ])
 plt.ylim((0, upper*upper))
-plt.show()
+# plt.show()
+plt.savefig("big_o.svg")

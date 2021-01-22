@@ -1,32 +1,15 @@
 #include <stdio.h>
+#include <stdint.h>
 
 int main(void)
 {
-    double M[3][3];
+    uint32_t matrix[3][2] = { { 0, 1 }, { 2, 3 }, { 4, 5 } };
 
-    for (int i = 0; i < 3; i++)
+    for (uint32_t i = 0; i < 3; i++)
     {
-        for (int j = 0; j < 3; j++)
+        for (uint32_t j = 0; j < 2; j++)
         {
-            M[i][j] = i * j;
-        }
-    }
-
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            printf("M[%d][%d] = %lf\n", i, j, M[i][j]);
-        }
-    }
-
-    double N[3][2] = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
-
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 2; j++)
-        {
-            printf("N[%d][%d] = %lf\n", i, j, N[i][j]);
+            printf("%u, %p\n", matrix[i][j], (void *)&matrix[i][j]);
         }
     }
 
