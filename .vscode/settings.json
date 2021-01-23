@@ -10,20 +10,10 @@
     // For all OS
     "make": "make",
     "files.associations": {
-        "*.h": "cpp",
-        "system_error": "c",
-        "xlocale": "c",
-        "tuple": "c",
-        "utility": "c",
-        "xstring": "c",
-        "xutility": "c",
-        "cstdlib": "cpp",
-        "string_view": "cpp",
-        "optional": "c",
-        "ostream": "c",
-        "array": "c",
-        "functional": "c",
-        "type_traits": "c"
-    },
-    "python.pythonPath": "C:\\Users\\Jan\\anaconda3\\envs\\tensorflow\\python.exe"
+        "*.c": "c",
+        "*.h": "c",
+        "*.cpp": "cpp",
+        "*.cc": "cpp",
+        "*.hpp": "cpp"
+      },
 }
