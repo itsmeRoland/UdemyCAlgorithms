@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <string.h>
 
-#define TABLE_SIZE (uint32_t)13u
+#define TABLE_SIZE (uint32_t)7u
 #define MAX_NAME_SIZE (uint32_t)256u
 
 uint32_t hash(char key[MAX_NAME_SIZE])
@@ -24,14 +24,13 @@ uint32_t hash(char key[MAX_NAME_SIZE])
     return hash_value;
 }
 
-
 int main()
 {
-    char *name1 = "Jan";
-    char *name2 = "Maxi";
-    char *name3 = "Lena";
-    char *name4 = "Peter";
-    char *name5 = "Lara";
+    char name1[] = "Jan";
+    char name2[] = "Maxi";
+    char name3[] = "Lena";
+    char name4[] = "Peter";
+    char name5[] = "Lara";
 
     printf("Key: %s, Idx: %u\n", name1, hash(name1));
     printf("Key: %s, Idx: %u\n", name2, hash(name2));
