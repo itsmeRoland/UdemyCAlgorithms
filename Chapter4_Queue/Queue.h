@@ -1,17 +1,17 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-/*********************/
-/*      INCLUDES     */
-/*********************/
+/*******************/
+/*     INCLUDES    */
+/*******************/
 
 #include <math.h>
 #include <stdint.h>
 #include <stdbool.h>
 
-/*********************/
-/* DEFINES AND TYPES */
-/*********************/
+/**********************/
+/* DEFINES AND TYPES  */
+/**********************/
 
 typedef float value_type_t;
 #define NO_VALUE (value_type_t)INFINITY
@@ -25,11 +25,11 @@ typedef struct queue
     value_type_t *data;
 } queue_t;
 
-/*********************/
-/*    FUNCTIONS      */
-/*********************/
+/**********************/
+/*     FUNCTIONS      */
+/**********************/
 
-queue_t * createQueue(uint32_t capacity);
+queue_t *createQueue(uint32_t capacity);
 
 queue_t *freeQueue(queue_t *queue);
 

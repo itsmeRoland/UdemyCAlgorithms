@@ -12,18 +12,19 @@ queue_t *createQueue(uint32_t capacity)
         return NULL;
     }
 
-    const size_t data_size = capacity * sizeof(value_type_t);
+    size_t data_size = capacity * sizeof(value_type_t);
     value_type_t *data = (value_type_t *)malloc(data_size);
 
     if (NULL == data)
     {
         free(queue);
+
         return NULL;
     }
 
-    queue->size = 0u;
     queue->front_idx = 0u;
     queue->back_idx = capacity - 1u;
+    queue->size = 0u;
     queue->capacity = capacity;
     queue->data = data;
 
@@ -75,6 +76,7 @@ value_type_t pop(queue_t *queue)
     }
 
     value_type_t value = queue->data[queue->front_idx];
+
     queue->front_idx = (queue->front_idx + 1u) % queue->capacity;
     queue->size--;
 
@@ -109,13 +111,13 @@ void printQueue(queue_t *queue)
     }
 
     printf(
-        "\nQueue contains %u elements with a capacity of %u.\n",
+        "\nQueue contains %u elements with a capcity of %u.\n",
         queue->size,
         queue->capacity
     );
 
     for (uint32_t i = 0u; i < queue->size; i++)
     {
-        printf("Index: %d, Value: %f\n", i, queue->data[i]);
+        printf("Index: %d, Value %f\n", i, queue->data[i]);
     }
 }
