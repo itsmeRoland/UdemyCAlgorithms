@@ -10,10 +10,11 @@
     // For all OS
     "make": "make",
     "files.associations": {
-        "*.c": "c",
-        "*.h": "c",
-        "*.cpp": "cpp",
-        "*.cc": "cpp",
-        "*.hpp": "cpp"
-      },
+      "*.h": "c",
+      "*.c": "c",
+      "*.cpp": "cpp",
+      "*.cc": "cpp",
+      "*.hpp": "cpp",
+      "typeinfo": "c"
+    },
 }
