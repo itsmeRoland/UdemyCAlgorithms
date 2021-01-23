@@ -123,7 +123,7 @@ value_type_t popBack(list_t *list)
 }
 
 
-void frontPush(list_t *list, node_t *node)
+void pushFront(list_t *list, node_t *node)
 {
     if (NULL == node || NULL == list)
     {
@@ -148,9 +148,9 @@ void frontPush(list_t *list, node_t *node)
     list->size++;
 }
 
-value_type_t frontPop(list_t *list)
+value_type_t popFront(list_t *list)
 {
-    node_t *node = list->back;
+    node_t *node = list->front;
     value_type_t value = *(node->value);
 
     if (list->size > 1u)
@@ -171,82 +171,108 @@ value_type_t frontPop(list_t *list)
     return value;
 }
 
-void removeNode(list_t *list, node_t *node)
+value_type_t popNode(list_t *list, uint32_t idx)
 {
-    if (NULL == list || NULL == node)
-    {
-        return;
-    }
-
-    if(NULL != node->prev)
-    {
-        node->prev->next = node->next;
-    }
-    else
-    {
-        list->front = node->next;
-        list->front->prev = NULL;
-    }
-
-    if (NULL != node->next)
-    {
-        node->next->prev = node->prev;
-    }
-    else
-    {
-        list->back = node->prev;
-        list->back->next = NULL;
-    }
-
-    freeNode(node);
-
-    list->size--;
-}
-
-node_t *findValue(list_t *list, value_type_t value)
-{
-    if (NULL == list)
-    {
-        return NULL;
-    }
-
-    node_t *node = list->front;
-
-    while (NULL != node)
-    {
-        if (*node->value == value)
-        {
-            return node;
-        }
-
-        node = node->next;
-    }
-
-    return NULL;
-}
-
-value_type_t valueAtIndex(list_t *list, uint32_t index)
-{
-    if (NULL == list || index >= list->size)
+    if (NULL == list || idx >= list->size)
     {
         return NO_VALUE;
     }
 
-    uint32_t current_index = 0u;
-    node_t *node = list->front;
-
-    while (current_index < list->size)
+    if (0u == idx)
     {
-        if (current_index == index)
-        {
-            return *(node->value);
-        }
-
-        node = node->next;
-        current_index++;
+        return popFront(list);
     }
 
-    return NO_VALUE;
+    if ((list->size - 1u) == idx)
+    {
+        return popBack(list);
+    }
+
+    uint32_t current_idx = 0u;
+    node_t *node_at_idx = list->front;
+
+    while(current_idx < idx)
+    {
+        node_at_idx = node_at_idx->next;
+
+        current_idx++;
+    }
+
+    value_type_t value = *node_at_idx->value;
+
+    node_at_idx->next->prev = node_at_idx->prev;
+    node_at_idx->prev->next = node_at_idx->next;
+
+    freeNode(node_at_idx);
+
+    list->size--;
+
+    return value;
+}
+
+void pushNode(list_t *list, node_t *node, uint32_t idx)
+{
+    if (NULL == list || NULL == node || idx >= list->size)
+    {
+        return;
+    }
+
+    if (0u == idx)
+    {
+        pushFront(list, node);
+    }
+
+    if ((list->size - 1u) == idx)
+    {
+        pushBack(list, node);
+    }
+
+    uint32_t current_idx = 0u;
+    node_t *node_at_idx = list->front;
+
+    while(current_idx < idx)
+    {
+        node_at_idx = node->next;
+
+        current_idx++;
+    }
+
+    node->prev = node_at_idx;
+    node->next = node_at_idx->next;
+    node_at_idx->next->prev = node;
+    node_at_idx->next = node;
+
+    list->size++;
+}
+
+value_type_t valueAtIndex(list_t *list, uint32_t idx)
+{
+    if (NULL == list || idx >= list->size)
+    {
+        return NO_VALUE;
+    }
+
+    if (0u == idx)
+    {
+        return *(list->front->value);
+    }
+
+    if ((list->size - 1u) == idx)
+    {
+        return *(list->back->value);
+    }
+
+    uint32_t current_idx = 0u;
+    node_t *node_at_idx = list->front;
+
+    while (current_idx < list->size)
+    {
+        node_at_idx = node_at_idx->next;
+
+        current_idx++;
+    }
+
+    return *(node_at_idx->value);
 }
 
 void printList(list_t *list)
@@ -256,15 +282,15 @@ void printList(list_t *list)
         return;
     }
 
-    uint32_t index = 0u;
+    uint32_t idx = 0u;
     node_t *current = list->front;
 
     printf("\nList contains %d elements.\n", list->size);
 
     while (NULL != current)
     {
-        printf("Index: %d, Value: %f", index, *current->value);
+        printf("Index: %d, Value: %f\n", idx, *current->value);
         current = current->next;
-        index++;
+        idx++;
     }
 }

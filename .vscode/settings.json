@@ -18,7 +18,12 @@
         "xstring": "c",
         "xutility": "c",
         "cstdlib": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "optional": "c",
+        "ostream": "c",
+        "array": "c",
+        "functional": "c",
+        "type_traits": "c"
     },
     "python.pythonPath": "C:\\Users\\Jan\\anaconda3\\envs\\tensorflow\\python.exe"
 }

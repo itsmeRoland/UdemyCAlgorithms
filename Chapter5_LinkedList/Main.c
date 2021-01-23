@@ -22,6 +22,8 @@ int main(void)
     pushBack(list, b);
     pushBack(list, c);
 
+    printList(list);
+
     assert(a == list->front);
     assert(NULL == list->front->prev);
     assert(b == list->front->next);
@@ -33,6 +35,8 @@ int main(void)
     value_type_t value_b = popBack(list);
     value_type_t value_a = popBack(list);
 
+    printList(list);
+
     assert(1.0f == value_a);
     assert(2.0f == value_b);
     assert(3.0f == value_c);
@@ -41,17 +45,12 @@ int main(void)
     assert(0u == list->size);
 
     node_t *d = createNode(4.0f);
-    frontPush(list, d);
-
+    pushFront(list, d);
     node_t *e = createNode(5.0f);
-    frontPush(list, e);
-    node_t *f = createNode(6.0f);
-    frontPush(list, f);
+    pushFront(list, e);
+    popNode(list, 0);
 
-    removeNode(list, e);
-    assert(list->front->next == list->back);
-    assert(list->front == list->back->prev);
-    removeNode(list, f);
+    printList(list);
 
     assert(d == list->front);
     assert(NULL == list->front->prev);
@@ -59,13 +58,27 @@ int main(void)
     assert(NULL == list->back->next);
     assert(1u == list->size);
 
-    printList(list);
+    (void)popFront(list);
 
-    (void)frontPop(list);
+    printList(list);
 
     assert(NULL == list->front);
     assert(NULL == list->back);
     assert(0u == list->size);
+
+    node_t *f = createNode(6.0f);
+    node_t *g = createNode(7.0f);
+    node_t *h = createNode(8.0f);
+    pushBack(list, f);
+    pushBack(list, g);
+    pushFront(list, h);
+    popNode(list, 1);
+
+    printList(list);
+
+    assert(h == list->front);
+    assert(g == list->back);
+    assert(2u == list->size);
 
     list = freeList(list);
     assert(NULL == list);

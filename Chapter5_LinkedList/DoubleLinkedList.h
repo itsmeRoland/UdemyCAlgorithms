@@ -45,15 +45,15 @@ void pushBack(list_t *list, node_t *node);
 
 value_type_t popBack(list_t *list);
 
-void frontPush(list_t *list, node_t *node);
+void pushFront(list_t *list, node_t *node);
 
-value_type_t frontPop(list_t *list);
+value_type_t popFront(list_t *list);
 
-void removeNode(list_t *list, node_t *node);
+value_type_t popNode(list_t *list, uint32_t idx);
 
-node_t *findValue(list_t *list, float value);
+void pushNode(list_t *list, node_t *node, uint32_t idx);
 
-value_type_t valueAtIndex(list_t *list, uint32_t index);
+value_type_t valueAtIndex(list_t *list, uint32_t idx);
 
 void printList(list_t *list);
 
