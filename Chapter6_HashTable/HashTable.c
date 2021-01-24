@@ -160,6 +160,6 @@ void printHashTable(hash_table_t *hash_table)
     for (uint32_t i = 0u; i < TABLE_SIZE; i++)
     {
         item_t *item = &hash_table->data[i];
-        printf("Index: %d, Key: %s, Value %f\n", i, item->key, item->value);
+        printf("Index: %u, Key: %s, Value %f\n", i, item->key, item->value);
     }
 }
