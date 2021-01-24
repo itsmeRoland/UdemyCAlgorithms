@@ -148,7 +148,7 @@ void printHeap(heap_t *heap)
     }
 
     uint32_t num_visited_nodes = 0u;
-    uint32_t depth = (uint32_t)ceil(log2(heap->size)) + 1u;
+    uint32_t depth = (uint32_t)floor(log2(heap->size)) + 1u;
 
     for (uint32_t i = 0u; i < depth; i++)
     {
