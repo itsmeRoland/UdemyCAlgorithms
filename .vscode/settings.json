@@ -2,19 +2,9 @@
     // Windows, Linux
     "compilerC": "gcc",
     "compilerCpp": "g++",
-    "debuggerCpp": "gdb",
     // MacOS
     // "compilerC": "clang",
     // "compilerCpp": "clang++",
-    // "debuggerCpp": "lldb",
     // For all OS
-    "make": "make",
-    "files.associations": {
-      "*.h": "c",
-      "*.c": "c",
-      "*.cpp": "cpp",
-      "*.cc": "cpp",
-      "*.hpp": "cpp",
-      "typeinfo": "c"
-    },
+    "make": "make"
 }
