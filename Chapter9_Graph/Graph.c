@@ -50,7 +50,7 @@ graph_t *freeGraph(graph_t *graph)
     return NULL;
 }
 
-node_t *createNode(uint32_t node_idx, value_type_t weight, node_t *head)
+node_t *createNode(uint32_t node_idx, value_type_t weight, node_t *previous_node)
 {
     node_t *node = (node_t *)malloc(sizeof(node_t));
 
@@ -59,7 +59,7 @@ node_t *createNode(uint32_t node_idx, value_type_t weight, node_t *head)
         return NULL;
     }
 
-    node->next = head;
+    node->next = previous_node;
     node->weight = weight;
     node->node_idx = node_idx;
 
@@ -80,14 +80,30 @@ node_t *freeNode(node_t *node)
 
 void addEdges(graph_t *graph, edge_t edges[])
 {
-    for (uint32_t i = 0; i < graph->num_edges; i++)
+    for (uint32_t i = 0u; i < graph->num_edges; i++)
     {
         uint32_t start_node_idx = edges[i].start_node_idx;
         uint32_t end_node_idx = edges[i].end_node_idx;
         value_type_t weight = edges[i].weight;
 
-        node_t *new_node = createNode(end_node_idx, weight, graph->verticies[start_node_idx]);
-        graph->verticies[start_node_idx] = new_node;
+        node_t *start_node = graph->verticies[start_node_idx];
+        node_t *end_node = createNode(end_node_idx, weight, start_node);
+        graph->verticies[start_node_idx] = end_node;
+    }
+}
+
+void removeEdges(graph_t *graph)
+{
+    for (uint32_t i = 0u; i < graph->num_verticies; i++)
+    {
+        node_t *current_node = graph->verticies[i];
+
+        while (NULL != current_node)
+        {
+            node_t * next_node = current_node->next;
+            free(current_node);
+            current_node = next_node;
+        }
     }
 }
 

@@ -51,6 +51,8 @@ node_t *freeNode(node_t *node);
 
 void addEdges(graph_t *graph, edge_t edges[]);
 
+void removeEdges(graph_t *graph);
+
 void printGraph(graph_t *graph);
 
 #endif // GRAPH_H
