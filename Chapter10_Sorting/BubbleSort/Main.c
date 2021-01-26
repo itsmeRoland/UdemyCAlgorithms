@@ -1,37 +1,39 @@
 #include <stdio.h>
 #include <stdint.h>
 
-void printArray(float arr[], uint32_t size)
+typedef float value_type_t;
+
+void printArray(value_type_t arr[], uint32_t size)
 {
-    for (uint32_t i = 0; i < size; i++)
+    for (uint32_t i = 0u; i < size; i++)
     {
-        if (i < size - 1)
+        if (i < size - 1u)
         {
-            printf("%.2f, ", arr[i]);
+            printf("%f, ", arr[i]);
         }
         else
         {
-            printf("%.2f\n", arr[i]);
+            printf("%f\n", arr[i]);
         }
     }
 }
 
-void swap(float *a, float *b)
+void swap(value_type_t *a, value_type_t *b)
 {
-    float temp = *a;
+    value_type_t temp = *a;
     *a = *b;
     *b = temp;
 }
 
-void bubbleSort(float arr[], uint32_t size)
+void bubbleSort(value_type_t arr[], uint32_t size)
 {
-    for (uint32_t i = 0; i < size - 1; i++)
+    for (uint32_t i = 0u; i < size - 1u; i++)
     {
-        for (uint32_t j = 0; j < size - i - 1; j++)
+        for (uint32_t j = 0u; j < size - i - 1u; j++)
         {
-            if (arr[j] > arr[j + 1])
+            if (arr[j] > arr[j + 1u])
             {
-                swap(&arr[j], &arr[j + 1]);
+                swap(&arr[j], &arr[j + 1u]);
             }
         }
     }
@@ -39,11 +41,9 @@ void bubbleSort(float arr[], uint32_t size)
 
 int main(void)
 {
-    float data[] = { -10, 20, -20, 40, 12 };
+    value_type_t data[] = { -10, 20, -20, 40, 12 };
 
-    printArray(data, 5);
-    bubbleSort(data, 5);
-    printArray(data, 5);
-
-    return 0;
+    printArray(data, 5u);
+    bubbleSort(data, 5u);
+    printArray(data, 5u);
 }

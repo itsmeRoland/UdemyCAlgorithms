@@ -2,11 +2,13 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-void printArray(float arr[], uint32_t size)
+typedef float value_type_t;
+
+void printArray(value_type_t arr[], uint32_t size)
 {
-    for (uint32_t i = 0; i < size; i++)
+    for (uint32_t i = 0u; i < size; i++)
     {
-        if (i < size - 1)
+        if (i < size - 1u)
         {
             printf("%.2f, ", arr[i]);
         }
@@ -17,26 +19,26 @@ void printArray(float arr[], uint32_t size)
     }
 }
 
-void merge(float arr[], uint32_t start, uint32_t mid, uint32_t end)
+void merge(value_type_t arr[], uint32_t start, uint32_t mid, uint32_t end)
 {
-    uint32_t num1 = mid - start + 1;
+    uint32_t num1 = mid - start + 1u;
     uint32_t num2 = end - mid;
 
-    float *arr1 = (float *)malloc(num1 * sizeof(float));
-    float *arr2 = (float *)malloc(num2 * sizeof(float));
+    value_type_t *arr1 = (value_type_t *)malloc(num1 * sizeof(value_type_t));
+    value_type_t *arr2 = (value_type_t *)malloc(num2 * sizeof(value_type_t));
 
-    for (uint32_t i = 0; i < num1; i++)
+    for (uint32_t i = 0u; i < num1; i++)
     {
         arr1[i] = arr[start + i];
     }
 
-    for (uint32_t j = 0; j < num2; j++)
+    for (uint32_t j = 0u; j < num2; j++)
     {
-        arr2[j] = arr[mid + 1 + j];
+        arr2[j] = arr[mid + 1u + j];
     }
 
-    uint32_t i = 0;
-    uint32_t j = 0;
+    uint32_t i = 0u;
+    uint32_t j = 0u;
     uint32_t k = start;
 
     while (i < num1 && j < num2)
@@ -71,7 +73,7 @@ void merge(float arr[], uint32_t start, uint32_t mid, uint32_t end)
     free(arr2);
 }
 
-void divide(float arr[], uint32_t start, uint32_t end)
+void divide(value_type_t arr[], uint32_t start, uint32_t end)
 {
     if (start < end)
     {
@@ -82,18 +84,18 @@ void divide(float arr[], uint32_t start, uint32_t end)
     }
 }
 
-void mergeSort(float arr[], uint32_t size)
+void mergeSort(value_type_t arr[], uint32_t size)
 {
     divide(arr, 0u, size - 1u);
 }
 
 int main(void)
 {
-    float data[] = { -10, 20, -20, 40, 12 };
+    value_type_t data[] = { -10, 20, -20, 40, 12 };
 
-    printArray(data, 5);
-    mergeSort(data, 4);
-    printArray(data, 5);
+    printArray(data, 5u);
+    mergeSort(data, 5u - 1u);
+    printArray(data, 5u);
 
     return 0;
 }

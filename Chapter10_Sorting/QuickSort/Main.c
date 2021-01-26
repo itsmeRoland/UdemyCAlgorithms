@@ -2,7 +2,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-void printArray(float arr[], uint32_t size)
+typedef float value_type_t;
+
+void printArray(value_type_t arr[], uint32_t size)
 {
     for (uint32_t i = 0u; i < size; i++)
     {
@@ -17,10 +19,10 @@ void printArray(float arr[], uint32_t size)
     }
 }
 
-int32_t partition(float arr[], int32_t low, int32_t high)
+int32_t partition(value_type_t arr[], int32_t low, int32_t high)
 {
-    float temp;
-    float pivot = arr[high];
+    value_type_t temp;
+    value_type_t pivot = arr[high];
     int32_t i = (low - 1);
 
     for (int32_t j = low; j <= high - 1; j++)
@@ -41,7 +43,7 @@ int32_t partition(float arr[], int32_t low, int32_t high)
     return (i + 1);
 }
 
-void quickSort(float arr[], int32_t low, int32_t high)
+void quickSort(value_type_t arr[], int32_t low, int32_t high)
 {
     if (low < high)
     {
@@ -54,7 +56,7 @@ void quickSort(float arr[], int32_t low, int32_t high)
 
 int main(void)
 {
-    float data[] = { -10, 20, -20, 40, 12 };
+    value_type_t data[] = { -10, 20, -20, 40, 12 };
 
     printArray(data, 5u);
     quickSort(data, 0u, 4u);
