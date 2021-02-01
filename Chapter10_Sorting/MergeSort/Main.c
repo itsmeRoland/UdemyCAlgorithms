@@ -10,11 +10,11 @@ void printArray(value_type_t arr[], uint32_t size)
     {
         if (i < size - 1u)
         {
-            printf("%.2f, ", arr[i]);
+            printf("%f, ", arr[i]);
         }
         else
         {
-            printf("%.2f\n", arr[i]);
+            printf("%f\n", arr[i]);
         }
     }
 }
@@ -32,9 +32,9 @@ void merge(value_type_t arr[], uint32_t start, uint32_t mid, uint32_t end)
         arr1[i] = arr[start + i];
     }
 
-    for (uint32_t j = 0u; j < num2; j++)
+    for (uint32_t i = 0u; i < num2; i++)
     {
-        arr2[j] = arr[mid + 1u + j];
+        arr2[i] = arr[mid + 1u + i];
     }
 
     uint32_t i = 0u;
@@ -53,6 +53,7 @@ void merge(value_type_t arr[], uint32_t start, uint32_t mid, uint32_t end)
             arr[k] = arr2[j];
             j++;
         }
+
         k++;
     }
 
@@ -62,6 +63,7 @@ void merge(value_type_t arr[], uint32_t start, uint32_t mid, uint32_t end)
         i++;
         k++;
     }
+
     while (j < num2)
     {
         arr[k] = arr2[j];
@@ -94,8 +96,6 @@ int main(void)
     value_type_t data[] = { -10, 20, -20, 40, 12 };
 
     printArray(data, 5u);
-    mergeSort(data, 5u - 1u);
+    mergeSort(data, 5u);
     printArray(data, 5u);
-
-    return 0;
 }

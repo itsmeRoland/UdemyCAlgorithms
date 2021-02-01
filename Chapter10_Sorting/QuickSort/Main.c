@@ -10,47 +10,49 @@ void printArray(value_type_t arr[], uint32_t size)
     {
         if (i < size - 1u)
         {
-            printf("%.2f, ", arr[i]);
+            printf("%f, ", arr[i]);
         }
         else
         {
-            printf("%.2f\n", arr[i]);
+            printf("%f\n", arr[i]);
         }
     }
 }
 
-int32_t partition(value_type_t arr[], int32_t low, int32_t high)
+void swap(value_type_t *a, value_type_t *b)
 {
-    value_type_t temp;
-    value_type_t pivot = arr[high];
-    int32_t i = (low - 1);
+    value_type_t temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-    for (int32_t j = low; j <= high - 1; j++)
+int32_t partition(value_type_t arr[], int32_t start, int32_t end)
+{
+    value_type_t pivot = arr[end];
+    int32_t i = start - 1;
+
+    for (int32_t j = start; j <= end - 1; j++)
     {
         if (arr[j] <= pivot)
         {
             i++;
-            temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
+            swap(&arr[i], &arr[j]);
         }
     }
 
-    temp = arr[i + 1];
-    arr[i + 1] = arr[high];
-    arr[high] = temp;
+    swap(&arr[i + 1], &arr[end]);
 
-    return (i + 1);
+    return i + 1;
 }
 
-void quickSort(value_type_t arr[], int32_t low, int32_t high)
+void quickSort(value_type_t arr[], int32_t start, int32_t end)
 {
-    if (low < high)
+    if (start < end)
     {
-        int32_t p_idx = partition(arr, low, high);
+        int32_t p = partition(arr, start, end);
 
-        quickSort(arr, low, p_idx - 1);
-        quickSort(arr, p_idx + 1, high);
+        quickSort(arr, start, p - 1);
+        quickSort(arr, p + 1, end);
     }
 }
 
@@ -61,6 +63,4 @@ int main(void)
     printArray(data, 5u);
     quickSort(data, 0u, 4u);
     printArray(data, 5u);
-
-    return 0;
 }
