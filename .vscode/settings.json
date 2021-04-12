@@ -6,9 +6,5 @@
     // "compilerC": "clang",
     // "compilerCpp": "clang++",
     // For all OS
-    "make": "make",
-    "files.associations": {
-        "*.pyx": "python",
-        "stack.h": "c"
-    }
+    "make": "make"
 }
