@@ -7,6 +7,7 @@ TODO.txt
 # Unignore all dirs
 !*/
 !LICENSE
+!Makefile
 
 .vscode/c_cpp_properties.json
 lectures/
