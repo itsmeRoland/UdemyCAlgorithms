@@ -97,7 +97,7 @@ value_type_t removeMinimum(heap_t *heap)
         return NO_VALUE;
     }
 
-    if(heap->size == 1u)
+    if (heap->size == 1u)
     {
         heap->size--;
 
@@ -125,7 +125,7 @@ void heapify(heap_t *heap, uint32_t idx)
 
     if (left_idx < heap->size && heap->data[left_idx] < heap->data[smallest])
     {
-        smallest =left_idx;
+        smallest = left_idx;
     }
 
     if (right_idx < heap->size && heap->data[right_idx] < heap->data[smallest])

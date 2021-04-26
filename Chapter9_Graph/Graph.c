@@ -100,7 +100,7 @@ void removeEdges(graph_t *graph)
 
         while (NULL != current_node)
         {
-            node_t * next_node = current_node->next;
+            node_t *next_node = current_node->next;
             free(current_node);
             current_node = next_node;
         }

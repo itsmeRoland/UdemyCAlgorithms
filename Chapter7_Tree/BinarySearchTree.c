@@ -15,7 +15,7 @@ node_t *createBST(value_type_t value)
 
     node->left = NULL;
     node->right = NULL,
-    node->value = value;
+        node->value = value;
 
     return node;
 }
@@ -79,7 +79,7 @@ node_t *minValueNode(node_t *node)
         return NULL;
     }
 
-    while(NULL != current_node->left)
+    while (NULL != current_node->left)
     {
         current_node = current_node->left;
     }

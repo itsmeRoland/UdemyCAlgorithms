@@ -293,7 +293,7 @@ void printList(list_t *list)
     uint32_t current_idx = 0u;
     node_t *node_at_idx = list->front;
 
-    while(current_idx < list->size)
+    while (current_idx < list->size)
     {
         printf("Index: %u, Value: %f\n", current_idx, *(node_at_idx->value));
 
