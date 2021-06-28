@@ -1,9 +1,9 @@
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 
 int main(void)
 {
-    uint32_t matrix[3][2] = { { 0, 1 }, { 2, 3 }, { 4, 5 } };
+    uint32_t matrix[3][2] = {{0, 1}, {2, 3}, {4, 5}};
 
     for (uint32_t i = 0; i < 3; i++)
     {

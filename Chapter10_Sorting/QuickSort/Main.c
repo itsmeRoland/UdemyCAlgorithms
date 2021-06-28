@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 typedef float value_type_t;
@@ -58,7 +58,7 @@ void quickSort(value_type_t arr[], int32_t start, int32_t end)
 
 int main(void)
 {
-    value_type_t data[] = { -10, 20, -20, 40, 12 };
+    value_type_t data[] = {-10, 20, -20, 40, 12};
 
     printArray(data, 5u);
     quickSort(data, 0u, 4u);

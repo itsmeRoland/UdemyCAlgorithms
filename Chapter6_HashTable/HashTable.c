@@ -154,8 +154,7 @@ void printHashTable(hash_table_t *hash_table)
     printf(
         "\nHashTable contains %u elements with a capcity of %u.\n",
         hash_table->size,
-        hash_table->capacity
-    );
+        hash_table->capacity);
 
     for (uint32_t i = 0u; i < TABLE_SIZE; i++)
     {

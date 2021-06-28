@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 #include <string.h>
 
 #include "HashTable.h"
@@ -8,11 +8,11 @@ int main()
 {
     hash_table_t *hash_table = createHashTable();
 
-    item_t item1 = { .key = "Jan", .value = 26.0f };
-    item_t item2 = { .key = "Maxi", .value = 27.0f };
-    item_t item3 = { .key = "Lena", .value = 21.0f };
-    item_t item4 = { .key = "Peter", .value = 42.0f };
-    item_t item5 = { .key = "Lara", .value = 31.0f };
+    item_t item1 = {.key = "Jan", .value = 26.0f};
+    item_t item2 = {.key = "Maxi", .value = 27.0f};
+    item_t item3 = {.key = "Lena", .value = 21.0f};
+    item_t item4 = {.key = "Peter", .value = 42.0f};
+    item_t item5 = {.key = "Lara", .value = 31.0f};
 
     printf("Key: %s, Idx: %u\n", item1.key, hash(item1.key));
     printf("Key: %s, Idx: %u\n", item2.key, hash(item2.key));
@@ -34,7 +34,7 @@ int main()
     assert(0 == strncmp("Peter", hash_table->data[3].key, MAX_NAME_SIZE));
     assert(0 == strncmp("Lena", hash_table->data[11].key, MAX_NAME_SIZE));
 
-    item_t item1_duplicate = { .key = "Jan", .value = -26.0f };
+    item_t item1_duplicate = {.key = "Jan", .value = -26.0f};
     insertItem(hash_table, &item1_duplicate);
     value_type_t new_value_jan = getValue(hash_table, "Jan");
     assert(-26.0f == new_value_jan);

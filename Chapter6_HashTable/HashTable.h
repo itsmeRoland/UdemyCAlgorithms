@@ -6,15 +6,15 @@
 /*******************/
 
 #include <math.h>
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 /**********************/
 /* DEFINES AND TYPES  */
 /**********************/
 
 typedef float value_type_t;
-#define NO_VALUE (value_type_t)INFINITY
+#define NO_VALUE (value_type_t)(INFINITY)
 
 #define TABLE_SIZE (uint32_t)13u
 #define MAX_NAME_SIZE (uint32_t)256u

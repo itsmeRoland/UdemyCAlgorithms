@@ -1,6 +1,7 @@
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 #define TABLE_SIZE (uint32_t)7u
 #define MAX_NAME_SIZE (uint32_t)256u
@@ -9,11 +10,11 @@ uint32_t hash(char key[MAX_NAME_SIZE])
 {
     uint32_t hash_value = 0u;
 
-    for (uint32_t i = 0; i < MAX_NAME_SIZE; i++)
+    for (uint32_t i = 0u; i < MAX_NAME_SIZE; i++)
     {
         if ('\0' != key[i])
         {
-            hash_value = (hash_value * 128 + key[i]) % TABLE_SIZE;
+            hash_value = (hash_value * 128u + key[i]) % TABLE_SIZE;
         }
         else
         {

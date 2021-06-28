@@ -6,15 +6,15 @@
 /*******************/
 
 #include <math.h>
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 /**********************/
 /* DEFINES AND TYPES  */
 /**********************/
 
 typedef float value_type_t;
-#define NO_VALUE (value_type_t)INFINITY
+#define NO_VALUE (value_type_t)(INFINITY)
 
 typedef struct stack
 {

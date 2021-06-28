@@ -97,8 +97,7 @@ void printStack(stack_t *stack)
     printf(
         "\nStack contains %u elements with a capcity of %u.\n",
         stack->size,
-        stack->capacity
-    );
+        stack->capacity);
 
     for (int32_t i = stack->size - 1; i >= 0; i--)
     {

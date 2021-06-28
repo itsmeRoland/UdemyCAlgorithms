@@ -15,7 +15,7 @@ node_t *createBST(value_type_t value)
 
     node->left = NULL;
     node->right = NULL,
-        node->value = value;
+    node->value = value;
 
     return node;
 }
@@ -142,8 +142,7 @@ void printBST(node_t *node)
         "%.2f %.2f\n\n",
         node->value,
         left_value,
-        right_value
-    );
+        right_value);
 
     printBST(node->left);
     printBST(node->right);
