@@ -1,7 +1,7 @@
 #include <assert.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdint.h>
 
 #define TABLE_SIZE (uint32_t)7u
 #define MAX_NAME_SIZE (uint32_t)256u
