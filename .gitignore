@@ -9,6 +9,7 @@ TODO.txt
 !LICENSE
 !Makefile
 
+.vsode/settings.json
 .vscode/c_cpp_properties.json
 lectures/
 *.pptx

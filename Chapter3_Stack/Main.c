@@ -5,7 +5,7 @@
 
 int main(void)
 {
-    uint32_t capacity = 4;
+    uint32_t capacity = 4u;
     stack_t *stack = createStack(capacity);
 
     push(stack, 0.0f);
@@ -21,6 +21,7 @@ int main(void)
     assert(3.0f == stack->data[3]);
     assert(4u == stack->capacity);
     assert(4u == stack->size);
+    assert(NULL != stack);
 
     value_type_t value_pop1 = pop(stack);
     value_type_t value_pop2 = pop(stack);
@@ -31,6 +32,7 @@ int main(void)
     assert(2.0f == value_pop2);
     assert(4u == stack->capacity);
     assert(2u == stack->size);
+    assert(NULL != stack);
 
     value_type_t value_top1 = top(stack);
     value_type_t value_pop3 = pop(stack);
@@ -43,6 +45,7 @@ int main(void)
     assert(0.0f == value_pop4);
     assert(4u == stack->capacity);
     assert(0u == stack->size);
+    assert(NULL != stack);
 
     printStack(stack);
 

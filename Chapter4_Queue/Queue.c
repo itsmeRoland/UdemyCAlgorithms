@@ -113,11 +113,17 @@ void printQueue(queue_t *queue)
     printf(
         "\nQueue contains %u elements with a capcity of %u.\n",
         queue->size,
-        queue->capacity
-    );
+        queue->capacity);
+
+    if (queue->size == 0u)
+    {
+        return;
+    }
 
     for (uint32_t i = 0u; i < queue->size; i++)
     {
-        printf("Index: %d, Value %f\n", i, queue->data[i]);
+        uint32_t idx = (i + queue->front_idx) % queue->capacity;
+
+        printf("Element %d at Index: %d with Value %f\n", i, idx, queue->data[idx]);
     }
 }
