@@ -110,10 +110,7 @@ void printQueue(queue_t *queue)
         return;
     }
 
-    printf(
-        "\nQueue contains %u elements with a capcity of %u.\n",
-        queue->size,
-        queue->capacity);
+    printf("\nQueue contains %u elements with a capcity of %u.\n", queue->size, queue->capacity);
 
     if (queue->size == 0u)
     {
