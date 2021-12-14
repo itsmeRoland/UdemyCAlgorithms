@@ -4,42 +4,54 @@
         {
             "label": "Makefile_Debug",
             "type": "shell",
-            "command": ["${config:make}"],
+            "command": [
+                "${config:C_Cpp_Config.makePath}"
+            ],
             "args": [
                 "build",
                 "--file=${workspaceFolder}/.vscode/Makefile",
                 "--directory=${fileDirname}/",
                 "COMPILATION_MODE=Debug",
-                "C_COMPILER=${config:compilerC}",
+                "C_COMPILER=${config:C_Cpp_Config.cCompilerPath}",
                 "LANGUAGE_MODE=C",
                 "EXECUTABLE_NAME=${fileBasenameNoExtension}Debug"
+            ],
+            "problemMatcher": [
+                "$gcc"
             ]
         },
         {
             "label": "Makefile_Release",
             "type": "shell",
-            "command": ["${config:make}"],
+            "command": [
+                "${config:C_Cpp_Config.makePath}"
+            ],
             "args": [
                 "build",
                 "--file=${workspaceFolder}/.vscode/Makefile",
                 "--directory=${fileDirname}/",
                 "COMPILATION_MODE=Release",
-                "C_COMPILER=${config:compilerC}",
+                "C_COMPILER=${config:C_Cpp_Config.cCompilerPath}",
                 "LANGUAGE_MODE=C",
                 "EXECUTABLE_NAME=${fileBasenameNoExtension}Release"
+            ],
+            "problemMatcher": [
+                "$gcc"
             ]
         },
         {
             "label": "C: Debug (Single File)",
             "type": "shell",
-            "command": ["${config:make}"],
+            "command": [
+                "${config:C_Cpp_Config.makePath}"
+            ],
             "args": [
                 "build_single",
                 "--file=${workspaceFolder}/.vscode/Makefile",
                 "--directory=${fileDirname}/",
                 "FILE_NAME=${file}",
                 "COMPILATION_MODE=Debug",
-                "C_COMPILER=${config:compilerC}",
+                "C_COMPILER=${config:C_Cpp_Config.cCompilerPath}",
                 "LANGUAGE_MODE=C",
                 "EXECUTABLE_NAME=${fileBasenameNoExtension}Debug"
             ],
@@ -47,19 +59,23 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "C: Release (Single File)",
             "type": "shell",
-            "command": ["${config:make}"],
+            "command": [
+                "${config:C_Cpp_Config.makePath}"
+            ],
             "args": [
                 "build_single",
                 "--file=${workspaceFolder}/.vscode/Makefile",
                 "--directory=${fileDirname}/",
                 "FILE_NAME=${file}",
                 "COMPILATION_MODE=Release",
-                "C_COMPILER=${config:compilerC}",
+                "C_COMPILER=${config:C_Cpp_Config.cCompilerPath}",
                 "LANGUAGE_MODE=C",
                 "EXECUTABLE_NAME=${fileBasenameNoExtension}Release"
             ],
@@ -67,44 +83,60 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "C: Debug (Folder)",
             "type": "shell",
-            "command": ["${config:make}"],
+            "command": [
+                "${config:C_Cpp_Config.makePath}"
+            ],
             "args": [
                 "clean",
                 "--file=${workspaceFolder}/.vscode/Makefile",
                 "--directory=${fileDirname}/"
             ],
-            "dependsOn": ["Makefile_Debug"],
+            "dependsOn": [
+                "Makefile_Debug"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "C: Release (Folder)",
             "type": "shell",
-            "command": ["${config:make}"],
+            "command": [
+                "${config:C_Cpp_Config.makePath}"
+            ],
             "args": [
                 "clean",
                 "--file=${workspaceFolder}/.vscode/Makefile",
                 "--directory=${fileDirname}/"
             ],
-            "dependsOn": ["Makefile_Release"],
+            "dependsOn": [
+                "Makefile_Release"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "Execute: Debug Program",
             "type": "shell",
-            "command": ["${config:make}"],
+            "command": [
+                "${config:C_Cpp_Config.makePath}"
+            ],
             "args": [
                 "execute",
                 "--file=${workspaceFolder}/.vscode/Makefile",
@@ -116,12 +148,16 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "Execute: Release Program",
             "type": "shell",
-            "command": ["${config:make}"],
+            "command": [
+                "${config:C_Cpp_Config.makePath}"
+            ],
             "args": [
                 "execute",
                 "--file=${workspaceFolder}/.vscode/Makefile",
@@ -133,12 +169,16 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "label": "Makefile Clean",
             "type": "shell",
-            "command": ["${config:make}"],
+            "command": [
+                "${config:C_Cpp_Config.makePath}"
+            ],
             "args": [
                 "clean",
                 "--file=${workspaceFolder}/.vscode/Makefile",
@@ -149,7 +189,9 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
     ]
 }
